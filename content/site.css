@@ -11,3 +11,13 @@ body {
 nav{
     padding-bottom: 50px;
 }
+
+
+form { 
+    margin: 50px auto; 
+    padding: 50px;
+    width:250px;
+    border-radius: 3px;
+    background-color: silver;
+    color: black
+}

@@ -18,26 +18,24 @@ function GetAll(){
 
 
 function InsertDrone(){
-    var drone = {
-        "nome": $('#nomeDrone').val(),
-        "modelo": $('#modeloDrone').val(),
-        "cor": $('#corDrone').val()
-    }
-
     $.ajax({
-        url: "https://webstoreapps.azurewebsites.net/api/Drone",
-            type: "POST",
-            dataType: "JSON",
-            contentType: "application/json",
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(drone) ,
-            success: function(data){
-                alert('cadastrou')
-            } 
-    })
+        url: 'https://webstoreapps.azurewebsites.net/api/Drone',
+        dataType: 'JSON',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "nome": $('#nomeDrone').val(),
+            "modelo": $('#modeloDrone').val(),
+            "cor": $('#corDrone').val()
+        }),
+        processData: false,
+        success: function( data, textStatus, jQxhr ){
+            Swal.fire('Sucesso')
+        }, 
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+    });
 }
 
 function Details(obj){
@@ -46,7 +44,7 @@ function Details(obj){
         method: "GET",
         url: 'https://webstoreapps.azurewebsites.net/api/drone/'+nomeDrone,
         success: function(data){
-            alert('Nome: '+data.nome+'\nModelo: '+data.modelo+'\nCor: '+data.cor)
+            Swal.fire('Nome: '+data.nome+'\nModelo: '+data.modelo+'\nCor: '+data.cor)
         } 
     })
 }
